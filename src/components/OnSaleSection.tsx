@@ -4,6 +4,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import ProductCard from './ProductCard';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface Product {
   id: string;
@@ -115,9 +116,9 @@ export default function OnSaleSection({
         <h2 className="text-[24px] md:text-[32px] font-medium capitalize text-[#3C3738]">
           {title}
         </h2>
-        <button className="text-sm custom-gray underline text-[#3c3738]">
+        <Link href={'products'} className="text-sm custom-gray underline text-[#3c3738]">
           Shop Now
-        </button>
+        </Link>
       </div>
 
       <div 

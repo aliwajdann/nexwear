@@ -3,7 +3,15 @@ import React from 'react'
 import ProductsWithoutPrices from './ProductsWithoutPrices'
 import Link from 'next/link'
 
-function TextAndProducts() {
+interface Props {
+  category: string,
+  subcategory: string,
+  title: string,
+  linktext : string,
+  buttonlink: string
+}
+
+function TextAndProducts({category, subcategory, title, linktext, buttonlink} : Props) {
   return (
     <>
   <div className="textandproducts pt-[32px] md:pt-[40px] md:pl-[32px] pl-[0px] grid grid-cols-1 md:grid-cols-2 items-center overflow-hidden">
@@ -29,18 +37,19 @@ function TextAndProducts() {
 
   {/* Image */}
   <div className='pl-[16px] md:pl-[32px] flex flex-col items-center justify-center'>
-    <h4 className='text-[24px]  md:text-[32px] font-medium capitalize text-[#3C3738]'>T-Shirts</h4>
+    <h4 className='text-[24px]  md:text-[32px] font-medium capitalize text-[#3C3738]'>{title}</h4>
     <p  className='text-center text-[13px] md:text-[16px]  mb-4'>So many fabrics, patterns and colours to collect</p>
-    <Link href="" className='text-sm custom-gray underline  text-[#3c3738]'>Shop Now</Link>
+    <Link href={buttonlink} className='text-sm custom-gray underline  text-[#3c3738]'>{linktext}</Link>
   </div>
 
   {/* Products List */}
   <div className="overflow-x-hidden">
     <ProductsWithoutPrices
-      category="jewellery"
-      subcategory="necklaces"
+      category={category}
+      subcategory={subcategory}
       title=""
       linktext=""
+      buttonlink=""
     />
   </div>
 </div>

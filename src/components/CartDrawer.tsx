@@ -96,7 +96,7 @@ export default function CartDrawer() {
       {/* Drawer */}
       <aside
         className={`fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-xl z-50 flex flex-col
-        transform transition-transform duration-300
+        transform transition-transform duration-500
         ${isOn ? "translate-x-0" : "translate-x-full"}`}
         role="dialog"
         aria-label="Cart drawer"
@@ -155,92 +155,84 @@ export default function CartDrawer() {
 
                 return (
                   <div
-                    key={key}
-                    className="flex gap-3 pb-5 border-b border-neutral-200"
-                  >
-                    <img
-                      src={imageUrl}
-                      alt={item.title}
-                      className="w-16 h-16 md:w-20 md:h-20 object-cover rounded border border-neutral-200"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-sm text-neutral-900 font-medium truncate">
-                          {item.title}
-                        </h3>
-                        <button
-                          onClick={() => dispatch(removeFromCart(item.id))}
-                          className="shrink-0 w-7 h-7 grid place-items-center rounded-full border border-neutral-300 hover:bg-neutral-100"
-                          aria-label="Remove item"
-                        >
-                          <X className="w-3.5 h-3.5 text-neutral-700" />
-                        </button>
-                      </div>
+  key={key}
+  className="flex gap-3 pb-5 border-b border-neutral-200"
+>
+  <img
+    src={imageUrl}
+    alt={item.title}
+    className="w-16 h-16 md:w-20 md:h-20 object-cover rounded border border-neutral-200"
+  />
 
-                      {/* price */}
-                      <p className="text-xs text-neutral-600 mt-1">
-                        Price:&nbsp;
-                        <span className="text-neutral-900 font-medium">
-                          Rs.{(item.price || 0).toFixed(0)}
-                        </span>
-                      </p>
+  <div className="flex-1 min-w-0">
+    <div className="flex items-start justify-between gap-2">
+      <h3 className="text-sm text-neutral-900 font-medium truncate">
+        {item.title}
+      </h3>
+      <button
+        onClick={() => dispatch(removeFromCart(item.id))}
+        className="shrink-0 w-7 h-7 grid place-items-center rounded-full border border-neutral-300 hover:bg-neutral-100"
+        aria-label="Remove item"
+      >
+        <X className="w-3.5 h-3.5 text-neutral-700" />
+      </button>
+    </div>
 
-                      {/* selected color & size */}
-                      <div className="flex items-center gap-3 mt-2">
-                        {/* Color (swatch/name/image) */}
-                        <div className="flex items-center">
-                          {renderColor(item.selectedColor)}
-                        </div>
+    {/* Color & Size under title */}
+    <div className="flex items-center gap-3 mt-1">
+      {renderColor(item.selectedColor)}
+      {item.selectedSize && (
+        <span className="text-xs bg-neutral-100 px-2 py-0.5 rounded-full border border-neutral-300">
+          {item.selectedSize}
+        </span>
+      )}
+    </div>
 
-                        {/* Size badge */}
-                        {item.selectedSize && (
-                          <div className="text-xs text-neutral-700 border-neutral-200 px-2 py-0.5 rounded">
-                            {item.selectedSize}
-                          </div>
-                        )}
-                      </div>
+    {/* Price + quantity controls */}
+    <div className="flex items-center justify-between mt-2">
+      <p className="text-sm text-neutral-900 font-medium">
+        Rs.{(item.price || 0).toFixed(0)}
+      </p>
 
-                      {/* quantity controls */}
-                      <div className="flex items-center justify-between mt-2">
-                        <div className="inline-flex items-center border border-neutral-300">
-                          <button
-                            onClick={() =>
-                              dispatch(
-                                updateQuantity({
-                                  id: item.id,
-                                  selectedColor: item.selectedColor,
-                                  selectedSize: item.selectedSize,
-                                  quantity: Math.max(1, (item.quantity || 1) - 1),
-                                })
-                              )
-                            }
-                            className="px-2 py-1 text-neutral-700 hover:bg-neutral-100 text-sm"
-                          >
-                            −
-                          </button>
-                          <span className="px-3 py-1 text-sm text-neutral-900">
-                            {item.quantity}
-                          </span>
-                          <button
-                            onClick={() =>
-                              dispatch(
-                                updateQuantity({
-                                  id: item.id,
-                                  selectedColor: item.selectedColor,
-                                  selectedSize: item.selectedSize,
-                                  quantity: (item.quantity || 1) + 1,
-                                })
-                              )
-                            }
-                            className="px-2 py-1 text-neutral-700 hover:bg-neutral-100 text-sm"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
+      <div className="inline-flex items-center border border-neutral-300 rounded">
+        <button
+          onClick={() =>
+            dispatch(
+              updateQuantity({
+                id: item.id,
+                selectedColor: item.selectedColor,
+                selectedSize: item.selectedSize,
+                quantity: Math.max(1, (item.quantity || 1) - 1),
+              })
+            )
+          }
+          className="px-2 py-1 text-neutral-700 hover:bg-neutral-100 text-sm"
+        >
+          −
+        </button>
+        <span className="px-3 py-1 text-sm text-neutral-900">
+          {item.quantity}
+        </span>
+        <button
+          onClick={() =>
+            dispatch(
+              updateQuantity({
+                id: item.id,
+                selectedColor: item.selectedColor,
+                selectedSize: item.selectedSize,
+                quantity: (item.quantity || 1) + 1,
+              })
+            )
+          }
+          className="px-2 py-1 text-neutral-700 hover:bg-neutral-100 text-sm"
+        >
+          +
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  );
               })}
             </div>
           )}

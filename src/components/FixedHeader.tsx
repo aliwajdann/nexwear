@@ -91,7 +91,7 @@ export default function FixedHeader() {
           {/* Sliding white background (animated from top) */}
           <div
             aria-hidden
-            className={`absolute inset-x-0 top-0 h-full pointer-events-none transition-transform duration-350 ease-[cubic-bezier(.2,.9,.2,1)] ${
+            className={`absolute inset-x-0 top-0 h-full pointer-events-none transition-transform duration-600 ease-[cubic-bezier(.2,.9,.2,1)] ${
               isScrolled ? "translate-y-0" : "-translate-y-full"
             }`}
             style={{ willChange: "transform" }}

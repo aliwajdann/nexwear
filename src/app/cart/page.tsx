@@ -7,12 +7,6 @@ import { removeFromCart, updateQuantity } from "@/redux/cartSlice";
 import Link from "next/link";
 import { Minus, Plus, Trash2, Clock } from "lucide-react";
 
-/**
- * UI-only rewrite of CartPage.
- * - Keeps all state/logic the same (subtotal, deliveryFee, total, redux actions).
- * - Tight spacing, small text sizes, thin borders, compact cards to match the screenshot vibe.
- */
-
 export default function CartPage() {
   const [isClient, setIsClient] = useState(false);
   const dispatch = useDispatch();
@@ -22,9 +16,12 @@ export default function CartPage() {
     setIsClient(true);
   }, []);
 
-  if (!isClient) return null; // avoid hydration mismatch
+  if (!isClient) return null;
 
-  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = items.reduce(
+    (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
+    0
+  );
   const deliveryFee = subtotal < 3000 && subtotal > 0 ? 200 : 0;
   const total = subtotal + deliveryFee;
 
@@ -41,112 +38,128 @@ export default function CartPage() {
       <div className="max-w-5xl md:max-w-7xl mx-auto px-4 md:px-6 py-8">
         {/* Title */}
         <header className="mb-4 text-center">
-          <h1 className="text-2xl md:text-2xl font-medium tracking-tight">Your bag</h1>
+          <h1 className="text-2xl font-medium tracking-tight">Your bag</h1>
         </header>
 
         {/* Compact notice */}
         <div className="mb-6 flex items-start gap-3">
           <div className="flex items-center gap-2 text-xs text-yellow-800 bg-yellow-50 border border-yellow-100 rounded px-3 py-2">
             <Clock className="w-3 h-3" />
-            <span>
-              {/* Someone placed an order on an item in your bag reserved for{" "} */}
-              Someone placed an order on an item in your bag
-              {/* <span className="font-semibold">24 minutes</span>. */}
-            </span>
+            <span>Someone placed an order on an item in your bag</span>
           </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Left: products - occupies 2 columns */}
+          {/* Left: products */}
           <div className="md:col-span-2 space-y-4">
             <section className="text-sm">
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-base font-medium">Your products</h2>
-                <button
-                  // keep logic separate; we keep visual only — you can wire "remove all" action if present
-                  className="text-xs underline text-gray-600 hover:text-gray-800"
-                >
+                <button className="text-xs underline text-gray-600 hover:text-gray-800">
                   Remove all items
                 </button>
               </div>
 
               <div className="space-y-3">
-                {items.map((item: any) => {
+                {items.map((item: any, idx: number) => {
                   const imageUrl =
-                    item.media?.find((m: any) => m.type === "image")?.url || "/placeholder.png";
-                  const discountedPrice = item.price;
+                    item.media?.find((m: any) => m.type === "image")?.url ||
+                    "/placeholder.png";
+
+                  const colorKey =
+                    typeof item.selectedColor === "object"
+                      ? item.selectedColor?.colorCode ||
+                        item.selectedColor?.colorName ||
+                        JSON.stringify(item.selectedColor)
+                      : item.selectedColor || "nocolor";
+
+                  const key = `${item.id}-${item.selectedSize || "nosize"}-${colorKey}-${idx}`;
 
                   return (
                     <article
-                      key={item.id}
-                      className="flex items-start gap-4 p-3 md:p-4 bg-white border border-gray-100 rounded-sm"
+                      key={key}
+                      className="flex items-start gap-4 p-3 md:p-4 bg-white border border-gray-200 rounded"
                     >
                       {/* Thumbnail */}
                       <div className="w-20 h-20 flex-shrink-0">
                         <img
                           src={imageUrl}
                           alt={item.title}
-                          className="w-full h-full object-cover rounded-sm"
+                          className="w-full h-full object-cover rounded"
                         />
                       </div>
 
                       {/* Details */}
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <h3 className="text-sm font-medium leading-tight">{item.title}</h3>
-                            <div className="mt-1 text-xs text-gray-600">
+                            <h3 className="text-sm font-medium leading-tight truncate">
+                              {item.title}
+                            </h3>
+                            <div className="mt-1 flex flex-wrap gap-2 text-xs text-gray-600">
                               {item.selectedColor && (
-                                <span className="mr-3">Color: <span className="font-semibold">{item.selectedColor}</span></span>
+                                <span>
+                                  Color:{" "}
+                                  <span className="font-semibold">
+                                    {typeof item.selectedColor === "object"
+                                      ? item.selectedColor.colorName ||
+                                        item.selectedColor.colorCode
+                                      : item.selectedColor}
+                                  </span>
+                                </span>
                               )}
                               {item.selectedSize && (
-                                <span>Size: <span className="font-semibold">{item.selectedSize}</span></span>
+                                <span>
+                                  Size:{" "}
+                                  <span className="font-semibold">
+                                    {item.selectedSize}
+                                  </span>
+                                </span>
                               )}
                             </div>
                           </div>
 
-                          <div className="text-right">
-                            <div className="text-xs line-through text-gray-400">
-                              Rs. {item.price.toLocaleString()}
-                            </div>
+                          <div className="text-right shrink-0">
                             <div className="text-sm font-semibold text-[#681C1C]">
-                              Rs. {discountedPrice.toLocaleString()}
+                              Rs. {item.price.toLocaleString()}
                             </div>
                           </div>
                         </div>
 
-                        {/* Controls row: qty, subtotal, remove */}
-                        <div className="mt-3 flex items-center justify-between gap-4 text-xs">
+                        {/* Controls row */}
+                        <div className="mt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                           {/* Quantity stepper */}
-                          <div className="inline-flex items-center border rounded-sm overflow-hidden">
+                          <div className="flex items-center border rounded w-fit">
                             <button
                               onClick={() =>
                                 dispatch(
                                   updateQuantity({
                                     id: item.id,
-                                    quantity: Math.max(1, item.quantity - 1),
+                                    selectedColor: item.selectedColor,
+                                    selectedSize: item.selectedSize,
+                                    quantity: Math.max(1, (item.quantity || 1) - 1),
                                   })
                                 )
                               }
                               className="px-2 py-1 text-sm hover:bg-gray-100"
-                              aria-label="Decrease quantity"
                             >
                               <Minus className="w-3 h-3" />
                             </button>
-
-                            <div className="w-10 text-center text-xs">{item.quantity}</div>
-
+                            <div className="w-10 text-center text-xs">
+                              {item.quantity}
+                            </div>
                             <button
                               onClick={() =>
                                 dispatch(
                                   updateQuantity({
                                     id: item.id,
-                                    quantity: item.quantity + 1,
+                                    selectedColor: item.selectedColor,
+                                    selectedSize: item.selectedSize,
+                                    quantity: (item.quantity || 1) + 1,
                                   })
                                 )
                               }
                               className="px-2 py-1 text-sm hover:bg-gray-100"
-                              aria-label="Increase quantity"
                             >
                               <Plus className="w-3 h-3" />
                             </button>
@@ -154,18 +167,11 @@ export default function CartPage() {
 
                           {/* Subtotal */}
                           <div className="text-xs font-medium">
-                            Rs. {(discountedPrice * item.quantity).toLocaleString()}
+                            Rs. {(item.price * item.quantity).toLocaleString()}
                           </div>
 
                           {/* Remove */}
-                          <button
-                            onClick={() => dispatch(removeFromCart(item.id))}
-                            className="flex items-center gap-1 text-gray-500 hover:text-[#681C1C]"
-                            aria-label="Remove item"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                            <span className="hidden md:inline text-xs">Remove</span>
-                          </button>
+<button onClick={() => dispatch(removeFromCart(item.id))} className="flex items-center gap-1 text-gray-500 hover:text-[#681C1C]" aria-label="Remove item" > <Trash2 className="w-4 h-4" /> <span className="hidden md:inline text-xs">Remove</span> </button>
                         </div>
                       </div>
                     </article>
@@ -177,7 +183,7 @@ export default function CartPage() {
 
           {/* Right: order summary */}
           <aside className="md:col-span-1">
-            <div className="bg-[#fbf9f7] border border-[#ece7e3] p-4 md:p-5 text-sm rounded-sm">
+            <div className="bg-[#fbf9f7] border border-[#ece7e3] p-4 md:p-5 text-sm rounded">
               <h4 className="text-sm font-medium mb-3">Order total</h4>
 
               <div className="text-xs space-y-3">
@@ -185,11 +191,6 @@ export default function CartPage() {
                   <span className="text-gray-600">Items total</span>
                   <span className="font-medium">Rs. {subtotal.toLocaleString()}</span>
                 </div>
-
-                {/* <div className="flex justify-between">
-                  <span className="text-gray-600">Discount</span>
-                  <span className="font-medium text-[#681C1C]">- Rs. 0</span>
-                </div> */}
 
                 <div className="flex justify-between">
                   <span className="text-gray-600">Standard delivery total</span>
@@ -208,20 +209,11 @@ export default function CartPage() {
                 Free Standard Shipping over Rs. 3000
               </p>
 
-              <Link prefetch href="/checkout" className="block">
-                <button className="w-full mt-4 bg-[#3b3736] text-white py-2 text-sm font-medium rounded-sm hover:opacity-95">
+              <Link href="/checkout" className="block">
+                <button className="w-full mt-4 bg-[#3b3736] text-white py-2 text-sm font-medium rounded hover:opacity-95">
                   Proceed to Checkout
                 </button>
               </Link>
-
-              <div className="mt-3 flex gap-2">
-                {/* <button className="flex-1 py-2 text-xs border border-[#ebe7e4] rounded-sm">
-                  PayPal
-                </button>
-                <button className="flex-1 py-2 text-xs border border-[#ebe7e4] rounded-sm">
-                  Klarna
-                </button> */}
-              </div>
             </div>
           </aside>
         </div>

@@ -80,6 +80,13 @@ const scrollToSection = (id: string) => {
     ? Math.round(((originalprice - price) / originalprice) * 100)
     : null;
 
+
+    const selectedColorData = variants?.colors?.find(
+  (c) => c.colorName === selectedColor
+);
+
+const productImage = selectedColorData?.image || media[0]?.url;
+
   return (
     <div className="max-w-xl space-y-4 md:px-[36px] px-[16px] mt-5">
       {/* Badge */}
@@ -202,7 +209,8 @@ const scrollToSection = (id: string) => {
             quantity: qty,
             selectedColor: selectedColor || undefined,
             selectedSize: selectedSize || undefined,
-            media: media.map((m) => ({ url: m.url, type: m.type })),
+            // media: media.map((m) => ({ url: m.url, type: m.type })),
+            media: [{ url: productImage, type: "image" }],
           }}
         />
         </div>

@@ -79,11 +79,24 @@ export default function SubCategoryProductsPage() {
   if (loading) return <p className="p-6">Loading products...</p>;
 
   return (
-     <section className="w-full px-4 py-10 custom-background ">
-    <div className="w-[90%]  mx-auto">
+     <section className="w-full px-4 py-10">
+    <div className=" flex flex-col items-center justify-center mb-5">
+      
+      <div className="inline-flex items-center justify-center mb-6">
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent w-20"></div>
+            <div className="mx-6 p-3 bg-white rounded-full shadow-lg border border-gray-200">
+              <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-pulse"></div>
+            </div>
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent w-20"></div>
+            
+          </div>
       <h1 className="text-3xl font-bold capitalize mb-1">
-        {/* {subcategory.replace('-', 'het') + "lo"} */}
+        {subcategory.replace('-', 'het') + ""}
+        
       </h1>
+      </div>
+    <div className="w-[90%]  mx-auto">
+
 
       {products.length === 0 ? (
         <p className="text-gray-500">No products found in this subcategory.</p>

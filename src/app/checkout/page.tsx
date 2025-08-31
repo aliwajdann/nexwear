@@ -183,29 +183,44 @@ export default function CheckoutPage() {
             </div>
 
             <div className="divide-y divide-gray-100">
-              <div className="space-y-3 pb-4">
-                {cartItems.length === 0 ? (
-                  <div className="text-xs text-gray-500">No items in cart</div>
-                ) : (
-                  cartItems.map((it: any) => (
-                    <div key={it.id} className="flex items-center justify-between gap-3 text-sm">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-gray-100 rounded overflow-hidden flex-shrink-0">
-                          <img src={it.media?.[0]?.url || "/placeholder.png"} alt={it.title} className="w-full h-full object-cover" />
-                        </div>
-                        <div className="min-w-0">
-                          <div className="truncate text-gray-800 text-sm">{it.title}</div>
-                          <div className="text-xs text-gray-500">
-                            {it.selectedColor ? `Color: ${it.selectedColor}` : ""} {it.selectedSize ? ` • ${it.selectedSize}` : ""}
-                          </div>
-                        </div>
-                      </div>
+  <div className="space-y-4 pb-4">
+    {cartItems.length === 0 ? (
+      <div className="text-xs text-gray-500">No items in cart</div>
+    ) : (
+      cartItems.map((it: any) => (
+        <div
+          key={`${it.id}-${it.selectedColor || "noColor"}-${it.selectedSize || "noSize"}`}
+          className="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm"
+        >
+          {/* Left: Image + Info */}
+          <div className="flex items-start gap-3 flex-1 min-w-0">
+            <div className="w-14 h-14 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+              <img
+                src={it.media?.[0]?.url || "/placeholder.png"}
+                alt={it.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col">
+  <p className="text-sm font-medium text-gray-900 break-words">
+    {it.title}
+  </p>
+  <p className="text-xs text-gray-500">
+    Color: {it.selectedColor} | Size: {it.selectedSize}
+  </p>
+</div>
 
-                      <div className="text-right text-sm text-gray-800">
-                        PKR {(it.price * it.quantity).toLocaleString()}
-                        <div className="text-xs text-gray-500">x{it.quantity}</div>
-                      </div>
-                    </div>
+          </div>
+
+          {/* Right: Price + Qty */}
+          <div className="flex sm:flex-col   justify-between gap-1 sm:gap-0 text-sm text-gray-800">
+            <span className="font-medium">
+              PKR {(it.price * it.quantity).toLocaleString()}
+            </span>
+            <span className="text-xs text-gray-500">x{it.quantity}</span>
+          </div>
+        </div>
+
                   ))
                 )}
               </div>

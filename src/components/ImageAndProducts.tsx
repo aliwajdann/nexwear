@@ -10,10 +10,12 @@ type Props = {
   linktext: string,
   image: string,
   buttonlink: string
+  category: string,
+  subcategory: string
 }
 
 
-function ImageAndProducts({title, tagline, linktext, image, buttonlink}:Props) {
+function ImageAndProducts({title, tagline, linktext, image, buttonlink, category, subcategory}:Props) {
   return (
     <>
   <div  className="imageandproducts pt-[32px] md:pt-[40px] w-full md:pl-[32px] pl-[0px] grid  items-center justify-center overflow-hidden">
@@ -52,12 +54,12 @@ function ImageAndProducts({title, tagline, linktext, image, buttonlink}:Props) {
   <div className="overflow-x-hidden">
     
     <ProdsWithImg
-      category="jewellery"
-      subcategory="necklaces"
+      category={category}
+      subcategory={subcategory}
       title = {title}
-      linktext="View All"
+      linktext={linktext}
       tagline= {tagline}
-      buttonlink=""
+      buttonlink={buttonlink}
     />
   </div>
 </div>

@@ -93,7 +93,7 @@ export default function CartPage() {
                       <div className="flex-1 min-w-0">
                         <div className="md:flex items-start justify-between gap-3">
                           <div>
-                            <h3 className="text-sm font-medium leading-tight truncate">
+                            <h3 className="text-sm font-medium">
                               {item.title}
                             </h3>
                             <div className="mt-1 flex flex-wrap gap-2 text-xs text-gray-600">

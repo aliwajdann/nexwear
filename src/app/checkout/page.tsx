@@ -74,7 +74,7 @@ export default function CheckoutPage() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left: Form (scrollable on tall screens) */}
         <section
-          className="lg:col-span-8 bg-white border border-gray-100 rounded-sm  p-5 sm:p-6 overflow-hidden"
+          className="lg:col-span-8 bg-white border border-gray-100 rounded-sm  p-2 sm:p-6 overflow-hidden"
         >
           <div className="flex items-center gap-3 mb-4">
             <FiShoppingBag className="text-gray-600 w-5 h-5" />
@@ -176,7 +176,7 @@ export default function CheckoutPage() {
 
         {/* Right: Sticky order slip */}
         <aside className="lg:col-span-4">
-          <div className="lg:sticky lg:top-20 bg-white border border-gray-100 rounded-sm  p-5 sm:p-6">
+          <div className="lg:sticky lg:top-20 bg-white border border-gray-100 rounded-sm  p-2 sm:p-6">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-semibold text-gray-800">Your order</h3>
               <div className="text-xs text-gray-500">Summary</div>

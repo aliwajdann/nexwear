@@ -190,7 +190,7 @@ export default function CheckoutPage() {
       cartItems.map((it: any) => (
         <div
           key={`${it.id}-${it.selectedColor || "noColor"}-${it.selectedSize || "noSize"}`}
-          className="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm"
+          className="flex flex-col sm:flex-row  text-sm"
         >
           {/* Left: Image + Info */}
           <div className="flex items-start gap-3 flex-1 min-w-0">

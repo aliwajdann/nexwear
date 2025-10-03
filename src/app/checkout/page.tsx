@@ -208,17 +208,20 @@ export default function CheckoutPage() {
   <p className="text-xs text-gray-500">
     Color: {it.selectedColor} | Size: {it.selectedSize}
   </p>
-</div>
-
-          </div>
-
-          {/* Right: Price + Qty */}
-          <div className="flex sm:flex-col   justify-between gap-1 sm:gap-0 text-sm text-gray-800">
+   <div className="flex sm:flex-col   justify-between gap-1 sm:gap-0 text-sm text-gray-800">
             <span className="font-medium">
               PKR {(it.price * it.quantity).toLocaleString()}
             </span>
             <span className="text-xs text-gray-500">x{it.quantity}</span>
           </div>
+</div>
+
+
+
+          </div>
+
+          {/* Right: Price + Qty */}
+         
         </div>
 
                   ))

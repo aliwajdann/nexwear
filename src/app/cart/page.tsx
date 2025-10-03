@@ -53,12 +53,12 @@ export default function CartPage() {
           {/* Left: products */}
           <div className="md:col-span-2 space-y-4">
             <section className="text-sm">
-              <div className="flex items-center justify-between mb-3">
+              {/* <div className="flex items-center justify-between mb-3">
                 <h2 className="text-base font-medium">Your products</h2>
                 <button className="text-xs underline text-gray-600 hover:text-gray-800">
                   Remove all items
                 </button>
-              </div>
+              </div> */}
 
               <div className="space-y-3">
                 {items.map((item: any, idx: number) => {
@@ -91,7 +91,7 @@ export default function CartPage() {
 
                       {/* Details */}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-3">
+                        <div className="md:flex items-start justify-between gap-3">
                           <div>
                             <h3 className="text-sm font-medium leading-tight truncate">
                               {item.title}
@@ -119,7 +119,7 @@ export default function CartPage() {
                             </div>
                           </div>
 
-                          <div className="text-right shrink-0">
+                          <div className="md:text-right md:shrink-0">
                             <div className="text-sm font-semibold text-[#681C1C]">
                               Rs. {item.price.toLocaleString()}
                             </div>

@@ -46,7 +46,7 @@ const menuItems = [
 
   return (
     <>
-      <div className="sticky top-0 z-30">
+      <div className="sticky top-0 z-30 md:border-b-0 border-b-[1px]">
         {/* optional top bar */}
         {/* <div className=" z-50 bg-[#CC0D14]">
           <HeaderBar />

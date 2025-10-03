@@ -47,7 +47,7 @@ const atcbutton = useRef(null);
       onClick={handleCardClick}
       className={`cursor-pointer   transition group ${hasSecondImage ? '' : ''}`}
     >
-      <div className="relative p-0 overflow-hidden ">
+      <div className="relative p-0 overflow-hidden">
         <AtcBtn 
           product={{
              id : product.id,
@@ -63,7 +63,7 @@ quantity: 1
         <img
           src={product.images?.[0]?.url || 'https://cdn.velanoshop.store/Products/product-placeholder.jpg'}
           alt={product.name}
-          className={`w-full h-full object-fill transition-opacity duration-500 ${hasSecondImage ? 'group-hover:opacity-0' : ''}`}
+          className={`w-full h-full object-contain transition-opacity duration-500 ${hasSecondImage ? 'group-hover:opacity-0' : ''}`}
         />
 
         {/* Second Image + White Overlay */}

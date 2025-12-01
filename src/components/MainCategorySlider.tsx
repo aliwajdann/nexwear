@@ -153,11 +153,11 @@ export default function HeroCategorySwiper() {
   title="Necklaces Collection"
 />
  
-    <SubcategorySlider
+    {/* <SubcategorySlider
   category="undergarments"
   subcategory="necklaces"
   title="Necklaces Collection"
-/>
+/> */}
     <SubcategorySlider
   category="skincare"
   subcategory="necklaces"

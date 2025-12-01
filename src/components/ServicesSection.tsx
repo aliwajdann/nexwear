@@ -31,13 +31,15 @@ const ServiceCard = ({ image, title, link }: ServiceCardProps) => {
 export default function ServicesSection() {
   const services = [
     {
-      image: "https://sfra.production.calzedonia.coremedia.cloud/resource/image/683038/portrait_ratio1x1/600/600/2fcd2f3f363a057a1d505983c8c3ae7e/3D604F9E57492AFCC2F36F4FBC184BB0/all-hp-editorialbannerprimary-cw4123-myintimissimi-int.jpg",
-      title: "My Intimissimi loyalty program",
+      // image: "https://sfra.production.calzedonia.coremedia.cloud/resource/image/683038/portrait_ratio1x1/600/600/2fcd2f3f363a057a1d505983c8c3ae7e/3D604F9E57492AFCC2F36F4FBC184BB0/all-hp-editorialbannerprimary-cw4123-myintimissimi-int.jpg",
+      image: "",
+      title: "",
       link: "/loyalty",
     },
     {
-      image: "https://sfra.production.calzedonia.coremedia.cloud/resource/image/683038/portrait_ratio1x1/600/600/2fcd2f3f363a057a1d505983c8c3ae7e/3D604F9E57492AFCC2F36F4FBC184BB0/all-hp-editorialbannerprimary-cw4123-myintimissimi-int.jpg",
-      title: "Find your size",
+      // image: "https://sfra.production.calzedonia.coremedia.cloud/resource/image/683038/portrait_ratio1x1/600/600/2fcd2f3f363a057a1d505983c8c3ae7e/3D604F9E57492AFCC2F36F4FBC184BB0/all-hp-editorialbannerprimary-cw4123-myintimissimi-int.jpg",
+      image: "",
+      title: "",
       link: "/find-size",
     },
   ];

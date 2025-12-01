@@ -21,18 +21,18 @@ const HeroSection = () => {
   const swiperRef = useRef<any>(null);
 
   const mediaItems = [
-    {
-      type: 'image',
-      // desktopsrc: "https://images.unsplash.com/photo-1754753674476-6eda28010f02?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8",
-      desktopsrc: "https://cdn.velanoshop.store/banners/desktop-banner-one.jpg",
-      // mobilesrc: "https://plus.unsplash.com/premium_photo-1755612015739-942bd6de858c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8",
-      mobilesrc: "https://cdn.velanoshop.store/banners/mobile-banner-one.jpg",
-      alt: 'Nike Campaign',
-      title: 'NEW COLLECTION',
-      subtitle: 'Step into the future',
-      description: 'Discover the latest Nike innovations designed for peak performance',
-      buttonText: 'EXPLORE NOW'
-    },
+    // {
+    //   type: 'image',
+    //   // desktopsrc: "https://images.unsplash.com/photo-1754753674476-6eda28010f02?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8",
+    //   desktopsrc: "https://cdn.velanoshop.store/banners/desktop-banner-one.jpg",
+    //   // mobilesrc: "https://plus.unsplash.com/premium_photo-1755612015739-942bd6de858c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8",
+    //   mobilesrc: "https://cdn.velanoshop.store/banners/mobile-banner-one.jpg",
+    //   alt: 'Nike Campaign',
+    //   title: 'NEW COLLECTION',
+    //   subtitle: 'Step into the future',
+    //   description: 'Discover the latest Nike innovations designed for peak performance',
+    //   buttonText: 'EXPLORE NOW'
+    // },
     {
       type: 'image',
        desktopsrc: "https://plus.unsplash.com/premium_photo-1755534058913-29a8feca890f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D",

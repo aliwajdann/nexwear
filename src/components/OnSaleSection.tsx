@@ -19,7 +19,7 @@ interface Product {
   category: { name: string; slug: string };
   subcategory: { name: string; slug: string };
   description: string;
-  tags?: string[]; // 👈 added this
+  tags?: string[]; 
 }
 
 interface SubcategorySliderProps {

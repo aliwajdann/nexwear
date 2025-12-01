@@ -18,7 +18,7 @@ function CollectionSectionTexts() {
 
   {/* Content Grid */}
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <div>
+    {/* <div>
       <p className="text-md font-semibold mb-2">
         WOMEN’S BRAS
       </p>
@@ -30,7 +30,7 @@ function CollectionSectionTexts() {
         feeling. Coordinate your bra and knickers or have fun mixing and
         matching!
       </p>
-    </div>
+    </div> */}
 
     <div>
       <p className="text-md font-semibold mb-2">
@@ -44,7 +44,7 @@ function CollectionSectionTexts() {
       </p>
     </div>
 
-    <div>
+    {/* <div>
       <p className="text-md font-semibold mb-2">
         ALL TYPES OF LINGERIE
       </p>
@@ -54,9 +54,9 @@ function CollectionSectionTexts() {
         including silk, satin, and lace. Carefully designed, our lingerie hugs
         and highlights your best assets...
       </p>
-    </div>
+    </div> */}
 
-    <div>
+    {/* <div>
       <p className="text-md font-semibold mb-2">
         DAY-TO-NIGHT APPAREL
       </p>
@@ -65,7 +65,7 @@ function CollectionSectionTexts() {
         head-to-toe classic Intimissimi look. From tops to trousers, we focus
         on perfecting the best basics for every woman’s wardrobe...
       </p>
-    </div>
+    </div> */}
   </div>
 </section>
 

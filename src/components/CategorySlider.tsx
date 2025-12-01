@@ -12,14 +12,15 @@ type Subcategory = {
   image?: string;
 };
 
-type CategorySlug = 'skincare' | 'undergarments' | 'jewellery';
+// type CategorySlug = 'skincare' | 'undergarments' | 'jewellery';
+type CategorySlug = 'skincare'  | 'jewellery';
 
 const subcategories: Record<CategorySlug, Subcategory[]> = {
-  undergarments: [
-    { name: 'T-Shirts', slug: 't-shirts', image: '/images/tshirts.jpg' },
-    { name: 'Hoodies', slug: 'hoodies', image: '/images/hoodies.jpg' },
-    { name: 'Jeans', slug: 'jeans', image: '/images/jeans.jpg' },
-  ],
+  // undergarments: [
+  //   { name: 'T-Shirts', slug: 't-shirts', image: '/images/tshirts.jpg' },
+  //   { name: 'Hoodies', slug: 'hoodies', image: '/images/hoodies.jpg' },
+  //   { name: 'Jeans', slug: 'jeans', image: '/images/jeans.jpg' },
+  // ],
   skincare: [
     { name: 'Watches', slug: 'watches', image: '/images/watches.jpg' },
     { name: 'Sunglasses', slug: 'sunglasses', image: '/images/sunglasses.jpg' },

@@ -13,12 +13,7 @@ const ServiceCard = ({ image, title, link }: ServiceCardProps) => {
       href={link}
       className="relative group rounded-sm overflow-hidden shadow-md"
     >
-      {/* Image */}
-      <img
-        src={image}
-        alt={title}
-        className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
-      />
+      
 
       {/* Overlay text */}
       <div className="absolute bottom-3 left-3 text-white text-sm font-medium drop-shadow-md">

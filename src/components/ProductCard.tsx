@@ -10,7 +10,7 @@ interface Product {
   name: string;
   price: number;
   originalprice?: number;
-  images: { url: string, type : string}[];
+  images: { url: string, type: string }[];
   colors?: string[];
   href: string;
   description: string
@@ -29,7 +29,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     setIsWishlisted(!isWishlisted);
   };
 
-const atcbutton = useRef(null);
+  const atcbutton = useRef(null);
 
   const handleCardClick = () => {
     router.push(product.href);
@@ -48,16 +48,16 @@ const atcbutton = useRef(null);
       className={`cursor-pointer   transition group ${hasSecondImage ? '' : ''}`}
     >
       <div className="relative p-0 overflow-hidden">
-        <AtcBtn 
+        <AtcBtn
           product={{
-             id : product.id,
-              name: product.name,
-  price:product.price,
-  media:product.images,
-  description: product.description,
-quantity: 1
-           } } 
- 
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            media: product.images,
+            description: product.description,
+            quantity: 1
+          }}
+
         />
         {/* Main Image */}
         <img
@@ -110,3 +110,4 @@ quantity: 1
 };
 
 export default ProductCard;
+

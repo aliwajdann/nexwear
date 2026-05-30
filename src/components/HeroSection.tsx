@@ -35,17 +35,17 @@ const HeroSection = () => {
     // },
     {
       type: 'image',
-       desktopsrc: "https://plus.unsplash.com/premium_photo-1755534058913-29a8feca890f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D",
-      mobilesrc: "https://images.unsplash.com/photo-1755569309049-98410b94f66d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
-      alt: 'Nike Air Max',
-      title: 'AIR MAX SERIES',
-      subtitle: 'Maximum comfort, maximum style',
-      description: 'Experience legendary Air Max cushioning in bold new colorways',
-      buttonText: 'SHOP AIR MAX'
+      desktopsrc: "https://cdn.velanoshop.store/banners/desktop-banner.png",
+      mobilesrc: "https://cdn.velanoshop.store/banners/phone-banner.png",
+      // alt: 'Nike Air Max',
+      // title: 'AIR MAX SERIES',
+      // subtitle: 'Maximum comfort, maximum style',
+      // description: 'Experience legendary Air Max cushioning in bold new colorways',
+      // buttonText: 'SHOP AIR MAX'
     },
     {
       type: 'image',
-       desktopsrc: "https://plus.unsplash.com/premium_photo-1755241424289-119335c3b372?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D",
+      desktopsrc: "https://plus.unsplash.com/premium_photo-1755241424289-119335c3b372?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D",
       mobilesrc: "https://images.unsplash.com/photo-1755804127231-c493579c8ce5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D",
       alt: 'Nike Performance',
       title: 'PERFORMANCE GEAR',
@@ -65,7 +65,7 @@ const HeroSection = () => {
   //   }
   // };
 
-  const handleSlideChange = (swiper:any) => {
+  const handleSlideChange = (swiper: any) => {
     setCurrentSlide(swiper.realIndex);
   };
 
@@ -107,14 +107,14 @@ const HeroSection = () => {
         ref={swiperRef}
         loop={true}
         modules={[Autoplay, Navigation, Pagination]}
-        autoplay={{ 
+        autoplay={{
           delay: 4000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
           waitForTransition: true
         }}
         speed={800}
-        pagination={{ 
+        pagination={{
           clickable: true,
           el: '.custom-pagination',
           bulletClass: 'w-2 h-2 mx-1 rounded-full bg-white opacity-50 inline-block cursor-pointer transition-opacity',
@@ -134,58 +134,58 @@ const HeroSection = () => {
           <SwiperSlide key={index}>
             <div className="relative h-full w-full bg-black">
               {item.type === 'image' ? (
-  <>
-    {/* Desktop */}
-    <img
-      src={item.desktopsrc}
-      alt={item.alt}
-      className="hidden md:block w-full h-full object-cover"
-      loading="eager"
-      key={index}
-    />
-    {/* Mobile */}
-    <img
-  
-      src={item.mobilesrc}
-      alt={item.alt}
-      className="block md:hidden w-full h-full object-cover"
-      loading="eager"
-      key={44}
-    />
-  </>
-) : (
-  <>
-    {/* Desktop Video */}
-    <video
-      preload="auto"
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="hidden md:block w-full h-full object-cover"
-      key={22}
-    >
-      {/* <source src={item.desktopVideo} type="video/mp4" /> */}
-    </video>
-    {/* Mobile Video */}
-    <video
-      preload="auto"
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="block md:hidden w-full h-full object-cover"
-      key={33}
-    >
-      {/* <source src={item.src} type="video/mp4" /> */}
-    </video>
-  </>
-)}
+                <>
+                  {/* Desktop */}
+                  <img
+                    src={item.desktopsrc}
+                    alt={item.alt}
+                    className="hidden md:block w-full h-full object-cover"
+                    loading="eager"
+                    key={index}
+                  />
+                  {/* Mobile */}
+                  <img
 
-              
+                    src={item.mobilesrc}
+                    alt={item.alt}
+                    className="block md:hidden w-full h-full object-cover"
+                    loading="eager"
+                    key={44}
+                  />
+                </>
+              ) : (
+                <>
+                  {/* Desktop Video */}
+                  <video
+                    preload="auto"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="hidden md:block w-full h-full object-cover"
+                    key={22}
+                  >
+                    {/* <source src={item.desktopVideo} type="video/mp4" /> */}
+                  </video>
+                  {/* Mobile Video */}
+                  <video
+                    preload="auto"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="block md:hidden w-full h-full object-cover"
+                    key={33}
+                  >
+                    {/* <source src={item.src} type="video/mp4" /> */}
+                  </video>
+                </>
+              )}
+
+
               {/* Overlay */}
               {/* <div className="absolute w-full h-full inset-0 bg-black/10" /> */}
-              
+
               {/* Content */}
               <div className="absolute bottom-1 left-1 inset-0 flex items-center">
                 <div className="container mx-auto px-4 absolute bottom-[15%] left-0.5 md:px-8 lg:px-12">
@@ -199,20 +199,20 @@ const HeroSection = () => {
                         exit="hidden"
                         className="max-w-2xl text-white"
                       >
-                        <motion.h1 
+                        <motion.h1
                           variants={itemVariants}
                           className="text-[24px] md:text-[38px] font-bold leading-tight mb-5"
                         >
                           {item.subtitle}
                         </motion.h1>
-                        
-                        <motion.p 
+
+                        <motion.p
                           variants={itemVariants}
                           className="text-[14px] md:text-[16px] text-gray-200 mb-6 max-w-lg leading-relaxed"
                         >
                           {item.description}
                         </motion.p>
-                        
+
                         <button
                           // variants={itemVariants}
                           // whileHover={{ scale: 1.02 }}
@@ -268,7 +268,7 @@ const HeroSection = () => {
               strokeDasharray="56.5487"
             />
           </svg>
-          <button 
+          <button
             // onClick={togglePlayPause}
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white hover:scale-110 transition-transform"
           >

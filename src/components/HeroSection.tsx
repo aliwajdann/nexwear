@@ -35,18 +35,18 @@ const HeroSection = () => {
     // },
     {
       type: 'image',
-      desktopsrc: "https://cdn.velanoshop.store/banners/desktop-banner.png",
-      mobilesrc: "https://cdn.velanoshop.store/banners/phone-banner.png",
-      // alt: 'Nike Air Max',
-      // title: 'AIR MAX SERIES',
-      // subtitle: 'Maximum comfort, maximum style',
-      // description: 'Experience legendary Air Max cushioning in bold new colorways',
-      // buttonText: 'SHOP AIR MAX'
+      desktopsrc: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      mobilesrc: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      alt: 'Nike Air Max',
+      title: 'AIR MAX SERIES',
+      subtitle: 'Maximum comfort, maximum style',
+      description: 'Experience legendary Air Max cushioning in bold new colorways',
+      buttonText: 'SHOP AIR MAX'
     },
     {
       type: 'image',
-      desktopsrc: "https://plus.unsplash.com/premium_photo-1755241424289-119335c3b372?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D",
-      mobilesrc: "https://images.unsplash.com/photo-1755804127231-c493579c8ce5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D",
+      desktopsrc: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmFubmVyfGVufDB8fDB8fHww",
+      mobilesrc: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmFubmVyfGVufDB8fDB8fHww",
       alt: 'Nike Performance',
       title: 'PERFORMANCE GEAR',
       subtitle: 'Unleash your potential',

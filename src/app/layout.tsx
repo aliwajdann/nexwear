@@ -7,7 +7,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LoadingOverlayProvider } from "@/components/LoadingOverlay";
 import Footer from "./Footer";
 import ConditionalHeader from "./ConditionalHeader";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -75,11 +74,9 @@ export default function RootLayout({
           <Providers>
             <ConditionalHeader />
 
-            <SmoothScrollProvider>
-              <LoadingOverlayProvider>
-                {children}
-              </LoadingOverlayProvider>
-            </SmoothScrollProvider>
+            <LoadingOverlayProvider>
+              {children}
+            </LoadingOverlayProvider>
 
             <SpeedInsights />
             <Footer />

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { selectCartCount } from "@/redux/cartSelectors";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "@/redux/drawerSlice";
-import { UserButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
+import { UserButton, Show, useUser } from "@clerk/nextjs";
 import HeaderBar from "./HeaderBar";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/logo.png"
@@ -134,23 +134,23 @@ export default function FixedHeader() {
 
             {/* Right: Account + Cart */}
             <div className="flex items-center md:gap-2 gap-1">
-              <SignedIn>
+              <Show when="signed-in">
                 <div className="flex items-center gap-2">
                   {/* <span className={`text-xs ${isScrolled ? "text-gray-700" : "text-white/90"}`}>
                     Hi, {user?.firstName || "User"}!
                   </span> */}
                   <UserButton appearance={{ elements: { avatarBox: "w-7 h-7" } }} />
                 </div>
-              </SignedIn>
+              </Show>
 
-              <SignedOut>
+              <Show when="signed-out">
                 <a
                   href="/sign-in"
                   className={`p-1 rounded flex items-center ${isScrolled ? "bg-white/0" : "bg-white/0"}`}
                 >
                   <User className={`w-5 h-5 ${isScrolled ? "text-gray-900" : "text-white"}`} />
                 </a>
-              </SignedOut>
+              </Show>
 
               {/* <button
                 title="Wishlist"

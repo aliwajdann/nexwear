@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { selectCartCount } from "@/redux/cartSelectors";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "@/redux/drawerSlice";
-import { UserButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
+import { UserButton, Show, useUser } from "@clerk/nextjs";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/logo.png"
 import Image from "next/image";
@@ -79,15 +79,15 @@ const menuItems = [
 
           {/* Right: Account + Cart */}
           <div className="flex items-center  gap-1">
-            <SignedIn>
+            <Show when="signed-in">
               <UserButton appearance={{ elements: { avatarBox: "w-7 h-7" } }} />
-            </SignedIn>
+            </Show>
 
-            <SignedOut>
+            <Show when="signed-out">
               <a href="/sign-in" className="p-1 rounded flex items-center">
                 <User className="w-5 h-5 text-gray-900" />
               </a>
-            </SignedOut>
+            </Show>
 
             <button
               onClick={handleCartClick}

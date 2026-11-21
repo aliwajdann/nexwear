@@ -7,7 +7,7 @@ import { Search, ShoppingBag, Menu, X, ShoppingCart } from 'lucide-react';
 import { selectCartCount } from "@/redux/cartSelectors";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "@/redux/drawerSlice";
-import { UserButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
+import { UserButton, Show, useUser } from "@clerk/nextjs";
 import logo from "@/Velano.png";
 import CartDrawer from "./CartDrawer";
 import { useLoadingOverlay } from '@/components/LoadingOverlay';
@@ -168,22 +168,22 @@ const { show, hide } = useLoadingOverlay();
               </button>
               
               {/* User Authentication */}
-              <SignedIn>
+              <Show when="signed-in">
                 <div className="flex items-center space-x-2">
                   <span className="text-sm text-black">
                     Welcome, {user?.firstName || "User"}!
                   </span>
                   <UserButton />
                 </div>
-              </SignedIn>
-              <SignedOut>
+              </Show>
+              <Show when="signed-out">
                 <Link 
                   href="/sign-in" 
                   className="text-black hover:text-gray-800"
                 >
                   Account
                 </Link>
-              </SignedOut>
+              </Show>
               
         
               {/* Cart */}
@@ -350,15 +350,15 @@ const { show, hide } = useLoadingOverlay();
               <nav className="p-4">
                 {/* User Section */}
                 <div className="mb-6 pb-4 border-b border-gray-800">
-                  <SignedIn>
+                  <Show when="signed-in">
                     <div className="flex items-center space-x-3 mb-3">
                       <UserButton />
                       <span className="text-gray-800">
                         {user?.firstName || "User"}
                       </span>
                     </div>
-                  </SignedIn>
-                  <SignedOut>
+                  </Show>
+                  <Show when="signed-out">
                     <Link
                       href="/sign-in"
                       className="block py-2 text-teal-600 font-medium"
@@ -366,7 +366,7 @@ const { show, hide } = useLoadingOverlay();
                     >
                       Sign In
                     </Link>
-                  </SignedOut>
+                  </Show>
                 </div>
 
                 <ul className="space-y-4 ">

@@ -6,7 +6,7 @@ import { ShoppingCart, User } from 'lucide-react'
 import { selectCartCount } from "@/redux/cartSelectors"
 import { useSelector, useDispatch } from "react-redux"
 import { toggle } from "@/redux/drawerSlice"
-import { UserButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs"
+import { UserButton, Show, useUser } from "@clerk/nextjs"
 import CartDrawer from "./CartDrawer"
 import Image from 'next/image'
 import logo from '@/logo-v.png'
@@ -95,7 +95,7 @@ const NewHeader = () => {
 
           {/* Auth - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
-            <SignedIn>
+            <Show when="signed-in">
               {isAdmin && (
                 <Link href="/admin" className="text-white/90 text-sm font-medium uppercase tracking-wider hover:text-white hover:-translate-y-0.5 relative group">
                   Admin
@@ -106,13 +106,13 @@ const NewHeader = () => {
                 <span className="text-sm text-white/90">Hi, {user?.firstName || 'User'}!</span>
                 <UserButton appearance={{ elements: { avatarBox: "w-8 h-8 hover:scale-105 transition-transform" } }} />
               </div>
-            </SignedIn>
-            <SignedOut>
+            </Show>
+            <Show when="signed-out">
               <Link href="/sign-in" className="text-white text-sm uppercase tracking-wider flex items-center gap-2 hover:underline">
                 <User className="w-4 h-4" />
                 Account
               </Link>
-            </SignedOut>
+            </Show>
           </div>
 
           {/* Cart */}
@@ -135,7 +135,7 @@ const NewHeader = () => {
           <button onClick={closeMobileMenu} className="absolute top-20 right-8 text-white text-3xl hover:text-pink-400 hover:rotate-90">×</button>
 
           {/* Auth Mobile */}
-          <SignedIn>
+          <Show when="signed-in">
             {isAdmin && (
               <Link href="/admin" onClick={closeMobileMenu} className="text-white text-2xl uppercase font-medium tracking-wide hover:text-pink-400 hover:scale-110">
                 Admin
@@ -145,13 +145,13 @@ const NewHeader = () => {
               <span className="text-white text-xl">Hi, {user?.firstName || 'User'}!</span>
               <UserButton appearance={{ elements: { avatarBox: "w-8 h-8 hover:scale-105 transition-transform" } }} />
             </div>
-          </SignedIn>
-          <SignedOut>
+          </Show>
+          <Show when="signed-out">
             <Link href="/sign-in" onClick={closeMobileMenu} className="text-white text-2xl uppercase font-medium tracking-wide hover:text-pink-400 hover:scale-110 flex items-center gap-2">
               <User className="w-5 h-5" />
               Account
             </Link>
-          </SignedOut>
+          </Show>
 
           {/* Mobile Nav */}
           {['jewellery', 'skin-care', 'under-garments', 'about', 'contact'].map(path => (

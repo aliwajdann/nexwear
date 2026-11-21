@@ -62,38 +62,36 @@ export default function FixedHeader() {
   const iconColor = isScrolled ? "text-gray-800" : "text-white";
 
   const menuItems = [
-  { name: "New In", href: "/categories/new-in" },
-  { name: "Lingerie", href: "/categories/lingerie" },
-  { name: "Sets", href: "/categories/sets" },
-  { name: "Bestsellers", href: "/categories/bestsellers" },
-  { name: "Provocative", href: "/categories/provocative" },
-  { name: "Bras", href: "/categories/bras" },
-  { name: "Swim", href: "/categories/swim" },
-  { name: "Nightwear", href: "/categories/nightwear" },
-  { name: "Hosiery", href: "/categories/hosiery" },
-  { name: "Gifts", href: "/categories/gifts" },
-  { name: "Clothing", href: "/categories/clothing" },
-  { name: "Archive", href: "/categories/archive" },
-];
+    { name: "New In", href: "/categories/new-in" },
+    { name: "Lingerie", href: "/categories/lingerie" },
+    { name: "Sets", href: "/categories/sets" },
+    { name: "Bestsellers", href: "/categories/bestsellers" },
+    { name: "Provocative", href: "/categories/provocative" },
+    { name: "Bras", href: "/categories/bras" },
+    { name: "Swim", href: "/categories/swim" },
+    { name: "Nightwear", href: "/categories/nightwear" },
+    { name: "Hosiery", href: "/categories/hosiery" },
+    { name: "Gifts", href: "/categories/gifts" },
+    { name: "Clothing", href: "/categories/clothing" },
+    { name: "Archive", href: "/categories/archive" },
+  ];
 
   return (
     <>
       <div className="fixed top-0 left-0 w-full z-50">
-       <div className="relative z-50 bg-[#CC0D14]">
-    <HeaderBar />
-  </div>
+        <div className="relative z-50 bg-[#CC0D14]">
+          <HeaderBar />
+        </div>
         {/* Header container */}
         <header
-  className={`relative md:px-3 md:py-1 transition-all duration-300 ${
-    isScrolled ? "md:mt-0" : "md:mt-[16px]"
-  }`}
->
+          className={`relative md:px-3 md:py-1 transition-all duration-300 ${isScrolled ? "md:mt-0" : "md:mt-[16px]"
+            }`}
+        >
           {/* Sliding white background (animated from top) */}
           <div
             aria-hidden
-            className={`absolute inset-x-0 top-0 h-full pointer-events-none transition-transform duration-600 ease-[cubic-bezier(.2,.9,.2,1)] ${
-              isScrolled ? "translate-y-0" : "-translate-y-full"
-            }`}
+            className={`absolute inset-x-0 top-0 h-full pointer-events-none transition-transform duration-600 ease-[cubic-bezier(.2,.9,.2,1)] ${isScrolled ? "translate-y-0" : "-translate-y-full"
+              }`}
             style={{ willChange: "transform" }}
           >
             <div className="w-full h-full bg-white opacity-100" />
@@ -101,9 +99,8 @@ export default function FixedHeader() {
 
           {/* Actual header content (transparent initially) */}
           <div
-            className={`relative flex items-center justify-between h-14 px-4 md:px-6 transition-colors duration-300 ${
-              isScrolled ? "text-gray-900" : "text-white"
-            }`}
+            className={`relative flex items-center justify-between h-14 px-4 md:px-6 transition-colors duration-300 ${isScrolled ? "text-gray-900" : "text-white"
+              }`}
             role="navigation"
             aria-label="Main"
           >
@@ -115,7 +112,7 @@ export default function FixedHeader() {
                 className={`flex gap-2 items-center justify-center rounded hover:opacity-90 transition ${isScrolled ? "bg-white/0" : "bg-white/0"}`}
               >
                 <AlignJustify className={`w-5 h-5 ${isScrolled ? "text-gray-900" : "text-white"}`} />
-            <span className="hidden md:inline">Menu</span>
+                <span className="hidden md:inline">Menu</span>
               </button>
             </div>
 
@@ -123,12 +120,11 @@ export default function FixedHeader() {
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <a
                 href="/"
-                className={`inline-block text-sm tracking-[0.18em] font-medium ${
-                  isScrolled ? "text-gray-900" : "text-white"
-                }`}
+                className={`inline-block text-sm tracking-[0.18em] font-medium ${isScrolled ? "text-gray-900" : "text-white"
+                  }`}
               >
                 {/* VELANO<sup className={`${isScrolled ? "text-[10px] text-gray-700" : "text-[10px] text-white"}`}>®</sup> */}
-                  <Image src={logo} height={100} className="w-[90%] md:w-[100%] mt-3" alt="" />
+                <Image src={logo} height={100} className="w-[90%] md:w-[100%] mt-3" alt="" />
               </a>
             </div>
 
@@ -181,70 +177,70 @@ export default function FixedHeader() {
 
       {/* Fullscreen Slide Menu (used on all sizes when hamburger pressed) */}
       <div
-  className={`
+        className={`
     fixed top-0 left-0 h-full z-[9999] bg-white transform transition-transform duration-400
     ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}   
     w-full md:w-[30%] shadow-lg
   `}
->
-  <div className="flex flex-col h-full">
-    {/* Menu Header */}
-    <div className="flex items-center justify-between px-6 py-4 border-b">
-      <span className="text-md tracking-[0.18em]">Menu</span>
-      <button onClick={closeMenu} className="p-2 rounded-full">
-        <X className="w-4 h-4" />
-      </button>
-    </div>
-
-    {/* Menu items */}
-    <nav className="flex-1 overflow-y-auto py-6 text-sm">
-      <ul className="px-6 space-y-1">
-        {menuItems.map((m, i) => (
-    <li key={i}>
-      <a
-        onClick={closeMenu}
-        href={m.href} // now links work!
-        className="block w-full text-sm py-3 border-b border-gray-100 hover:bg-gray-50"
       >
-        {m.name}
-      </a>
-    </li>
-  ))}
-      </ul>
+        <div className="flex flex-col h-full">
+          {/* Menu Header */}
+          <div className="flex items-center justify-between px-6 py-4 border-b">
+            <span className="text-md tracking-[0.18em]">Menu</span>
+            <button onClick={closeMenu} className="p-2 rounded-full">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
 
-      <div className="mt-6 px-6 border-t pt-4 space-y-2">
-  <a onClick={closeMenu} href="/about" className="block text-sm py-3 border-b">
-    About Us
-  </a>
-  <a onClick={closeMenu} href="/contact" className="block text-sm py-3 border-b">
-    Help
-  </a>
-  <a onClick={closeMenu} href="/shipping" className="block text-sm py-3 border-b">
-    Shipping
-  </a>
-  <a onClick={closeMenu} href="/returns" className="block text-sm py-3 border-b">
-    Returns
-  </a>
-</div>
-    </nav>
-  </div>
-</div>
+          {/* Menu items */}
+          <nav className="flex-1 overflow-y-auto py-6 text-sm">
+            <ul className="px-6 space-y-1">
+              {menuItems.map((m, i) => (
+                <li key={i}>
+                  <a
+                    onClick={closeMenu}
+                    href={m.href} // now links work!
+                    className="block w-full text-sm py-3 border-b border-gray-100 hover:bg-gray-50"
+                  >
+                    {m.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-{/* OVERLAY */}
-<AnimatePresence>
-  {isMenuOpen && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="fixed inset-0 bg-black/50 z-[888]"
-      onClick={closeMenu}
-    />
-  )}
-</AnimatePresence>
+            <div className="mt-6 px-6 border-t pt-4 space-y-2">
+              <a onClick={closeMenu} href="/about" className="block text-sm py-3 border-b">
+                About Us
+              </a>
+              <a onClick={closeMenu} href="/contact" className="block text-sm py-3 border-b">
+                Help
+              </a>
+              <a onClick={closeMenu} href="/shipping" className="block text-sm py-3 border-b">
+                Shipping
+              </a>
+              <a onClick={closeMenu} href="/returns" className="block text-sm py-3 border-b">
+                Returns
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
 
-     
+      {/* OVERLAY */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 bg-black/50 z-[888]"
+            onClick={closeMenu}
+          />
+        )}
+      </AnimatePresence>
+
+
 
       <CartDrawer />
     </>

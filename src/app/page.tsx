@@ -1,4 +1,6 @@
-import HeroSection from "@/components/HeroSection";
+// import HeroSection from "@/components/HeroSectionn";
+// import HeroSection from "@/components/HeroSection/HeroSection";
+import HeroSection from "@/components/HeroSection/HeroSection";
 import OnSaleSection from "@/components/OnSaleSection";
 import ImageAndProducts from "@/components/ImageAndProducts";
 import TextAndProducts from "@/components/TextAndProducts";

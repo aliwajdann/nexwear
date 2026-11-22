@@ -111,8 +111,8 @@ export default function FixedHeader() {
                 aria-label="Open menu"
                 className={`flex gap-2 items-center justify-center rounded hover:opacity-90 transition ${isScrolled ? "bg-white/0" : "bg-white/0"}`}
               >
-                <AlignJustify className={`w-5 h-5 ${isScrolled ? "text-gray-900" : "text-white"}`} />
-                <span className="hidden md:inline">Menu</span>
+                <AlignJustify className={`w-5 h-5 ${isScrolled ? "text-gray-900" : "text-gray-900"}`} />
+                <span className="hidden md:inline text-gray-900">Menu</span>
               </button>
             </div>
 
@@ -161,7 +161,7 @@ export default function FixedHeader() {
                 className="relative p-1 rounded"
                 aria-label="Open cart"
               >
-                <ShoppingBag className={`w-5 h-5 ${isScrolled ? "text-gray-900" : "text-white"}`} />
+                <ShoppingBag className={`w-5 h-5 ${isScrolled ? "text-gray-900" : "text-gray-900"}`} />
                 {hasMounted && cartCount > 0 && (
                   <span
                     className={`absolute -top-1 -right-2 bg-black text-white text-[10px] font-semibold rounded-full w-5 h-5 flex items-center justify-center`}

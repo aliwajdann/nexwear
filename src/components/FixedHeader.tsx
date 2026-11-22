@@ -45,15 +45,15 @@ export default function FixedHeader() {
     user && allowedAdminEmails.includes(user?.primaryEmailAddress?.emailAddress || "");
 
   // scroll detection (simple: > 20px)
-  useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY || 0;
-      setIsScrolled(y > 25);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // useEffect(() => {
+  //   const onScroll = () => {
+  //     const y = window.scrollY || 0;
+  //     setIsScrolled(y > 25);
+  //   };
+  //   onScroll();
+  //   window.addEventListener("scroll", onScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
 
   const handleCartClick = () => dispatch(toggle());
   const toggleMenu = () => setIsMenuOpen((s) => !s);
@@ -84,7 +84,8 @@ export default function FixedHeader() {
         </div>
         {/* Header container */}
         <header
-          className={`relative md:px-3 md:py-1 transition-all duration-300 ${isScrolled ? "md:mt-0" : "md:mt-[16px]"
+          // className={`relative md:px-3 md:py-1 transition-all duration-300 ${isScrolled ? "md:mt-0" : "md:mt-[16px]"
+          className={`relative md:px-3 md:py-1 transition-all duration-300"
             }`}
         >
           {/* Sliding white background (animated from top) */}
@@ -124,7 +125,7 @@ export default function FixedHeader() {
                   }`}
               >
                 {/* VELANO<sup className={`${isScrolled ? "text-[10px] text-gray-700" : "text-[10px] text-white"}`}>®</sup> */}
-                <Image src={logo} height={100} className="w-[90%] md:w-[100%] mt-3" alt="" />
+                {/* <Image src={logo} height={100} className="w-[90%] md:w-[100%] mt-3" alt="" /> */}
               </a>
             </div>
 

@@ -14,7 +14,7 @@
   flex-direction: column;
   min-height: 100vh;
   min-height: 100svh;
-  padding-top: var(--header-height, 120px);
+  padding-top: var(--header-height, 100px);
   /* space for the fixed header */
   background: var(--hero-bg, #f6f6f6);
   color: var(--ink);

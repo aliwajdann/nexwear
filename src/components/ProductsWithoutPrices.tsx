@@ -25,9 +25,9 @@ interface SubcategorySliderProps {
   category: string;
   subcategory: string;
   title?: string;
-  linktext? : string
-  buttonlink? : string
-  tagline? : string
+  linktext?: string
+  buttonlink?: string
+  tagline?: string
 }
 
 export default function ProductsWithoutPrices({
@@ -51,7 +51,7 @@ export default function ProductsWithoutPrices({
         const q = query(
           collection(db, 'products'),
           where('category.slug', '==', category),
-        //   where('subcategory.slug', '==', subcategory)
+          //   where('subcategory.slug', '==', subcategory)
         );
         const snapshot = await getDocs(q);
         const productsData = snapshot.docs.map((doc) => ({
@@ -79,7 +79,7 @@ export default function ProductsWithoutPrices({
   useEffect(() => {
     checkScrollButtons();
     const handleScroll = () => checkScrollButtons();
-    
+
     if (scrollContainerRef.current) {
       scrollContainerRef.current.addEventListener('scroll', handleScroll);
       return () => {
@@ -94,7 +94,7 @@ export default function ProductsWithoutPrices({
       const cardWidth = container.children[0]?.clientWidth || 0;
       const gap = 12; // gap between cards
       const scrollAmount = cardWidth + gap;
-      
+
       container.scrollBy({
         left: -scrollAmount,
         behavior: 'smooth'
@@ -108,7 +108,7 @@ export default function ProductsWithoutPrices({
       const cardWidth = container.children[0]?.clientWidth || 0;
       const gap = 12; // gap between cards
       const scrollAmount = cardWidth + gap;
-      
+
       container.scrollBy({
         left: scrollAmount,
         behavior: 'smooth'
@@ -120,27 +120,27 @@ export default function ProductsWithoutPrices({
 
   return (
     <section className="w-full pt-6 pb-10 flex flex-col items-start pl-[16px] md:pl-[32px]">
-    <div className="md:block hidden">
-      {/* <div className="inline-flex items-center justify-center mb-6">
+      <div className="md:block hidden">
+        {/* <div className="inline-flex items-center justify-center mb-6">
         <div className="h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent w-20"></div>
         <div className="mx-6 p-3 bg-white rounded-full shadow-lg border border-gray-200">
           <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-pulse"></div>
         </div>
         <div className="h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent w-20"></div>
       </div> */}
-      
-      <div className="flex items-start justify-center flex-col gap-4 mb-4">
-        <h2  className="md:text-[38px] text-[32px]  capitalize text-gray-800">
-          {title}
-        </h2>
-        {tagline &&  <p className='text-center text-[13px] md:text-[16px] mb-6'>{tagline}</p>}
-        <a href={buttonlink} className="text-sm text-[black] underline font-medium">
-          {linktext}
-        </a>
-      </div>
+
+        <div className="flex items-start justify-center flex-col gap-4 mb-4">
+          <h2 className="md:text-[38px] text-[32px]  capitalize text-gray-800">
+            {title}
+          </h2>
+          {tagline && <p className='text-center text-[13px] md:text-[16px] mb-6'>{tagline}</p>}
+          <a href={buttonlink} className="text-sm text-[black] underline font-medium">
+            {linktext}
+          </a>
+        </div>
       </div>
 
-      <div 
+      <div
         className="w-full relative "
         // className="w-full relative"
         onMouseEnter={() => setShowArrows(true)}
@@ -151,49 +151,47 @@ export default function ProductsWithoutPrices({
           <button
             onClick={scrollLeft}
             disabled={!canScrollLeft}
-            className={`absolute left-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border-gray-200 hover:bg-gray-50 transition-all duration-200 ${
-              !canScrollLeft ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'
-            }`}
+            className={`absolute left-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border-gray-200 hover:bg-gray-50 transition-all duration-200 ${!canScrollLeft ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'
+              }`}
           >
             <ChevronLeft className="w-5 h-5 text-gray-300" />
           </button>
-          
+
           <button
             onClick={scrollRight}
             disabled={!canScrollRight}
-            className={`absolute right-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border border-gray-200 hover:bg-gray-50 transition-all duration-200 ${
-              !canScrollRight ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'
-            }`}
+            className={`absolute right-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border border-gray-200 hover:bg-gray-50 transition-all duration-200 ${!canScrollRight ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'
+              }`}
           >
             <ChevronRight className="w-5 h-5 text-gray-300" />
           </button>
         </div>
 
         {/* Products Container */}
-<div
-  ref={scrollContainerRef}
-  className="flex overflow-x-auto gap-2 md:gap-3 pt-2 pb-4 scroll-smooth custom-scrollbar "
->
+        <div
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto gap-2 md:gap-3 pt-2 pb-4 scroll-smooth custom-scrollbar "
+        >
 
-  {products.map((product) => (
-    <div
-      key={product.id}
-      className="flex-none w-1/2 md:w-[calc(33.333%-8px)] lg:w-[calc(25%-9px)]"
-    >
-      
-      <ProductCard
-        product={{
-          id: product.id,
-          name: product.title,
-          price: product.price,
-          images: product.media,
-          href: `/products/${product.id}`,
-          description: product.description
-        }}
-      />
-    </div>
-  ))}
-</div>
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="flex-none w-1/2 md:w-[calc(33.333%-8px)] lg:w-[calc(25%-9px)]"
+            >
+
+              <ProductCard
+                product={{
+                  id: product.id,
+                  title: product.title,
+                  price: product.price,
+                  images: product.media,
+                  href: `/products/${product.id}`,
+                  description: product.description
+                }}
+              />
+            </div>
+          ))}
+        </div>
 
       </div>
 
@@ -222,4 +220,3 @@ export default function ProductsWithoutPrices({
   );
 }
 
-     

@@ -177,81 +177,81 @@ export default function SubCategoryProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
- useEffect(() => {
-  if (!category) return;
+  useEffect(() => {
+    if (!category) return;
 
-  const fetchProducts = async () => {
-    try {
-      const q = query(
-        collection(db, 'products'),
-        where('category.slug', '==', category)
-      );
-      const snapshot = await getDocs(q);
-      const productsData: Product[] = snapshot.docs.map((doc) => {
-        const data = doc.data() as Omit<Product, 'id'>;
-        return { id: doc.id, ...data };
-      });
+    const fetchProducts = async () => {
+      try {
+        const q = query(
+          collection(db, 'products'),
+          where('category.slug', '==', category)
+        );
+        const snapshot = await getDocs(q);
+        const productsData: Product[] = snapshot.docs.map((doc) => {
+          const data = doc.data() as Omit<Product, 'id'>;
+          return { id: doc.id, ...data };
+        });
 
-      setProducts(productsData);
-    } catch (err) {
-      console.error('❌ Error fetching products:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setProducts(productsData);
+      } catch (err) {
+        console.error('❌ Error fetching products:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchProducts();
-}, [category]);
+    fetchProducts();
+  }, [category]);
 
 
   if (loading) return <p className="p-6">Loading products...</p>;
 
   return (
-     <section className="w-full h-full py-10">
-     <div className="w-[95%] md:w-[90%]  mx-auto flex items-center flex-col">
-      <div className="inline-flex items-center justify-center mb-6">
-            <div className="h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent w-20"></div>
-            <div className="mx-6 p-3 bg-white rounded-full shadow-lg border border-gray-200">
-              <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-pulse"></div>
-            </div>
-            <div className="h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent w-20"></div>
+    <section className="w-full h-full py-10">
+      <div className="w-[95%] md:w-[90%]  mx-auto flex items-center flex-col">
+        <div className="inline-flex items-center justify-center mb-6">
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent w-20"></div>
+          <div className="mx-6 p-3 bg-white rounded-full shadow-lg border border-gray-200">
+            <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-pulse"></div>
           </div>
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent w-20"></div>
+        </div>
 
-<div className="flex items-center flex-col gap-4 mb-4">
+        <div className="flex items-center flex-col gap-4 mb-4">
           <h2 className="text-lg font-semibold capitalize text-gray-800">
-            {category.replace('-', ' ' ) + " " +'Collection'}
+            {category.replace('-', ' ') + " " + 'Collection'}
           </h2>
           {/* <button className="text-sm text-[#681C1C] hover:underline font-medium">
             View All
           </button> */}
-          </div>
-
-      {products.length === 0 ? (
-        <p className="text-gray-500">No products found in this subcategory.</p>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-x-6 gap-x-2 md:gap-y-6 gap-y-3">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={{
-                id: product.id,
-                name: product.title,
-                price: product.price,
-                originalprice: product.originalPrice,
-                images: product.media,
-                // rating: 4.5,
-                // isNew: true,
-                // isBestSeller: true,
-                href: `/products/${product.id}`,
-                colors: product.variants?.colors || [],
-                description: product.description
-                // sizes: product.variants?.sizes || [],
-              }}
-            />
-          ))}
         </div>
-      )}
-    </div>
+
+        {products.length === 0 ? (
+          <p className="text-gray-500">No products found in this subcategory.</p>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-x-6 gap-x-2 md:gap-y-6 gap-y-3">
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={{
+                  id: product.id,
+                  name: product.title,
+                  price: product.price,
+                  originalprice: product.originalPrice,
+                  images: product.media,
+                  // rating: 4.5,
+                  // isNew: true,
+                  // isBestSeller: true,
+                  href: `/products/${product.id}`,
+                  colors: product.variants?.colors || [],
+                  description: product.description
+                  // sizes: product.variants?.sizes || [],
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }

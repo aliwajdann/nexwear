@@ -19,7 +19,7 @@ interface Product {
   category: { name: string; slug: string };
   subcategory: { name: string; slug: string };
   description: string;
-  tags?: string[]; 
+  tags?: string[];
 }
 
 interface SubcategorySliderProps {
@@ -79,7 +79,7 @@ export default function OnSaleSection({
   useEffect(() => {
     checkScrollButtons();
     const handleScroll = () => checkScrollButtons();
-    
+
     if (scrollContainerRef.current) {
       scrollContainerRef.current.addEventListener('scroll', handleScroll);
       return () => {
@@ -121,7 +121,7 @@ export default function OnSaleSection({
         </Link>
       </div>
 
-      <div 
+      <div
         className="w-full relative pl-[16px] md:pl-[32px]"
         onMouseEnter={() => setShowArrows(true)}
         onMouseLeave={() => setShowArrows(false)}
@@ -131,26 +131,24 @@ export default function OnSaleSection({
           <button
             onClick={scrollLeft}
             disabled={!canScrollLeft}
-            className={`absolute left-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border-gray-200 hover:bg-gray-50 transition-all duration-200 ${
-              !canScrollLeft ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'
-            }`}
+            className={`absolute left-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border-gray-200 hover:bg-gray-50 transition-all duration-200 ${!canScrollLeft ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'
+              }`}
           >
             <ChevronLeft className="w-5 h-5 text-gray-300" />
           </button>
-          
+
           <button
             onClick={scrollRight}
             disabled={!canScrollRight}
-            className={`absolute right-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border border-gray-200 hover:bg-gray-50 transition-all duration-200 ${
-              !canScrollRight ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'
-            }`}
+            className={`absolute right-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border border-gray-200 hover:bg-gray-50 transition-all duration-200 ${!canScrollRight ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'
+              }`}
           >
             <ChevronRight className="w-5 h-5 text-gray-300" />
           </button>
         </div>
 
         {/* Products Container */}
-        <div 
+        <div
           ref={scrollContainerRef}
           className="flex overflow-x-auto gap-2 md:gap-3 pt-2 pb-4 scroll-smooth custom-scrollbar w-full"
         >
@@ -162,13 +160,15 @@ export default function OnSaleSection({
               <ProductCard
                 product={{
                   id: product.id,
-                  name: product.title,
+                  title: product.title,
                   price: product.price,
                   originalprice: product.originalPrice,
                   images: product.media,
-                  colors: product.variants?.colors || [],
                   href: `/products/${product.id}`,
                   description: product.description,
+                  category: product.category,
+                  subcategory: product.subcategory,
+                  tags: product.tags,
                 }}
               />
             </div>

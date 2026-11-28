@@ -2,106 +2,142 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
 import AtcBtn from './AtcBtn';
 
 interface Product {
   id: string;
-  name: string;
+  title: string;
   price: number;
   originalprice?: number;
-  images: { url: string, type: string }[];
-  colors?: string[];
+  images: { url: string; type: string }[];
   href: string;
-  description: string
+  description: string;
+  category?: { name: string; slug: string };
+  subcategory?: { name: string; slug: string };
+  tags?: string[];
 }
 
 interface ProductCardProps {
   product: Product;
+  edgeToEdge?: boolean; // images touch screen edges on mobile, text keeps side space
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const PLACEHOLDER =
+  'https://cdn.velanoshop.store/Products/product-placeholder.jpg';
+
+const TAG_STYLES: Record<string, { label: string; className: string }> = {
+  onsale: { label: 'On Sale', className: 'text-red-600' },
+  bestseller: { label: 'Best Seller', className: 'text-[#d33a1f]' },
+  new: { label: 'New', className: 'text-emerald-700' },
+};
+
+const getTag = (tags?: string[]) => {
+  if (!tags || tags.length === 0) return null;
+  const key = tags[0];
+  return (
+    TAG_STYLES[key] ?? {
+      label: key.charAt(0).toUpperCase() + key.slice(1),
+      className: 'text-[#d33a1f]',
+    }
+  );
+};
+
+const ProductCard = ({ product, edgeToEdge = false }: ProductCardProps) => {
   const router = useRouter();
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleWishlist = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsWishlisted(!isWishlisted);
-  };
+  const images = product.images?.length
+    ? product.images
+    : [{ url: PLACEHOLDER, type: 'image' }];
 
-  const atcbutton = useRef(null);
-
-  const handleCardClick = () => {
-    router.push(product.href);
-  };
+  const tag = getTag(product.tags);
 
   const discount =
     product.originalprice && product.originalprice > product.price
-      ? Math.round(((product.originalprice - product.price) / product.originalprice) * 100)
+      ? Math.round(
+        ((product.originalprice - product.price) / product.originalprice) * 100
+      )
       : 0;
 
-  const hasSecondImage = product.images?.[1];
+  // side space for text/thumbnails only (mobile), when images go edge to edge
+  const inset = edgeToEdge ? 'px-2 md:px-0' : '';
 
   return (
-    <div
-      onClick={handleCardClick}
-      className={`cursor-pointer   transition group ${hasSecondImage ? '' : ''}`}
-    >
-      <div className="relative p-0 overflow-hidden">
-        <AtcBtn
-          product={{
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            media: product.images,
-            description: product.description,
-            quantity: 1
-          }}
+    <div onClick={() => router.push(product.href)} className="cursor-pointer group">
+      {/* ========== MEDIA ========== */}
+      <div>
+        <div className="relative overflow-hidden bg-[#f6f6f6] rounded-[0.5px]">
+          <AtcBtn
+            product={{
+              id: product.id,
+              name: product.title,
+              price: product.price,
+              media: product.images,
+              description: product.description,
+              quantity: 1,
+            }}
+          />
+          <img
+            src={images[activeIndex]?.url}
+            alt={product.title}
+            className="w-full aspect-[4/5] object-cover transition-opacity duration-300"
+          />
+        </div>
 
-        />
-        {/* Main Image */}
-        <img
-          src={product.images?.[0]?.url || 'https://cdn.velanoshop.store/Products/product-placeholder.jpg'}
-          alt={product.name}
-          className={`w-full h-full object-contain transition-opacity duration-500 ${hasSecondImage ? 'group-hover:opacity-0' : ''}`}
-        />
-
-        {/* Second Image + White Overlay */}
-        {hasSecondImage && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-            <img
-              src={product.images[1].url}
-              alt={`${product.name} alternate`}
-              className="w-full h-full object-fill opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"
-            />
+        {images.length > 1 && (
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`mt-1.5 flex gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${inset}`}
+          >
+            {images.map((img, i) => (
+              <button
+                key={i}
+                type="button"
+                onMouseEnter={() => setActiveIndex(i)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveIndex(i);
+                }}
+                className={`shrink-0 w-10 h-12 overflow-hidden bg-[#f6f6f6] border-b-2 transition ${activeIndex === i ? 'border-black' : 'border-transparent'
+                  }`}
+              >
+                <img
+                  src={img.url}
+                  alt={`${product.title} thumbnail ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
           </div>
         )}
       </div>
 
-      <div className="mt-2 space-y-1">
-        <p className="text-[13px] text-black line-clamp-2">{product.name}</p>
+      {/* ========== INFO ========== */}
+      <div className={`mt-2 space-y-0.5 ${inset}`}>
+        {tag && (
+          <p className={`text-[13px] font-medium ${tag.className}`}>{tag.label}</p>
+        )}
 
-        <div className="flex items-center justify-between">
-          <span className="custom-gray text-xs">
+        {product.subcategory?.name && (
+          <p className="text-[14px] font-medium text-black">
+            {product.subcategory.name}
+          </p>
+        )}
+
+        <p className="text-[14px] text-gray-500 line-clamp-2">{product.title}</p>
+
+        <div className="flex items-center gap-2 pt-1 text-[14px]">
+          <span className="font-medium text-black">
             Rs.{product.price.toFixed(0)}
           </span>
 
-          {/* Color Swatches */}
-          {product.colors && product.colors.length > 0 && (
-            <div className="flex items-center gap-1">
-              {/* First color */}
-              <div
-                className="w-4 h-4 rounded-full border border-gray-300"
-                style={{ backgroundColor: product.colors[0] }}
-              />
-              {/* Extra count */}
-              {product.colors.length > 1 && (
-                <span className="text-xs text-gray-500">
-                  +{product.colors.length - 1}
-                </span>
-              )}
-            </div>
+          {discount > 0 && (
+            <>
+              <span className="text-gray-400 line-through">
+                Rs.{product.originalprice!.toFixed(0)}
+              </span>
+              <span className="font-medium text-green-700">{discount}% off</span>
+            </>
           )}
         </div>
       </div>
@@ -110,4 +146,3 @@ const ProductCard = ({ product }: ProductCardProps) => {
 };
 
 export default ProductCard;
-

@@ -24,9 +24,9 @@ export default function ProductsSection() {
 
       {/* Swiper for both mobile and desktop */}
       <div className="related  relative md:w-4/5 my-0 mx-auto">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6  text-gray-800 dark:text-primary-dark">
-        Related Products
-      </h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-6  text-gray-800 dark:text-primary-dark">
+          Related Products
+        </h2>
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={15}
@@ -68,7 +68,7 @@ export default function ProductsSection() {
                 <ProductCard
                   product={{
                     id: product.id,
-                    name: product.title,
+                    title: product.title,
                     price: product.price,
                     images: product.media,
                     originalprice: product.originalPrice,
@@ -76,9 +76,8 @@ export default function ProductsSection() {
                     // isNew: true,
                     // isBestSeller: true,
                     href: `/products/${product.id}`,
-                    colors: product.variants?.colors || [],
                     description: product.description
-                //  sizes: product.variants?.sizes || [],
+                    //  sizes: product.variants?.sizes || [],
                   }}
                 />
                 {/* Show ADD TO CART only on mobile */}

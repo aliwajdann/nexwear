@@ -105,79 +105,75 @@ export default function RelatedProducts({
     }
   };
 
-//   if (loading || products.length === 0) return null;
+  //   if (loading || products.length === 0) return null;
   if (products.length === 0) return <p>{category}</p>;
 
   return (
     <>
-    <section className="w-full md:w-[90%] mx-auto flex flex-col items-center pt-[32px] md:pt-[40px] mb-10">
-      <div className="flex items-center flex-col md:gap-4 gap-2 md:mb-6 mb-4">
-        <h2 className="text-[24px] md:text-[32px] font-medium capitalize text-[#3C3738]">
-          You may also like
-        </h2>
-      </div>
-
-      <div
-        className="w-full relative pl-[16px] md:pl-[32px]"
-        onMouseEnter={() => setShowArrows(true)}
-        onMouseLeave={() => setShowArrows(false)}
-      >
-        {/* Navigation Arrows */}
-        <div
-          className={`hidden md:block transition-opacity duration-300 ${
-            showArrows ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <button
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
-            className={`absolute left-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border-gray-200 hover:bg-gray-50 transition-all duration-200 ${
-              !canScrollLeft ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl"
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5 text-gray-300" />
-          </button>
-
-          <button
-            onClick={scrollRight}
-            disabled={!canScrollRight}
-            className={`absolute right-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border border-gray-200 hover:bg-gray-50 transition-all duration-200 ${
-              !canScrollRight ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl"
-            }`}
-          >
-            <ChevronRight className="w-5 h-5 text-gray-300" />
-          </button>
+      <section className="w-full md:w-[90%] mx-auto flex flex-col items-center pt-[32px] md:pt-[40px] mb-10">
+        <div className="flex items-center flex-col md:gap-4 gap-2 md:mb-6 mb-4">
+          <h2 className="text-[24px] md:text-[32px] font-medium capitalize text-[#3C3738]">
+            You may also like
+          </h2>
         </div>
 
-        {/* Products Container */}
         <div
-          ref={scrollContainerRef}
-          className="flex overflow-x-auto gap-2 md:gap-3 pt-2 pb-4 scroll-smooth custom-scrollbar w-full"
+          className="w-full relative pl-[16px] md:pl-[32px]"
+          onMouseEnter={() => setShowArrows(true)}
+          onMouseLeave={() => setShowArrows(false)}
         >
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="flex-none w-[calc(50%-6px)] sm:w-[calc(50%-6px)] md:w-[calc(33.333%-8px)] lg:w-[calc(25%-9px)]"
+          {/* Navigation Arrows */}
+          <div
+            className={`hidden md:block transition-opacity duration-300 ${showArrows ? "opacity-100" : "opacity-0"
+              }`}
+          >
+            <button
+              onClick={scrollLeft}
+              disabled={!canScrollLeft}
+              className={`absolute left-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border-gray-200 hover:bg-gray-50 transition-all duration-200 ${!canScrollLeft ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl"
+                }`}
             >
-              <ProductCard
-                product={{
-                  id: product.id,
-                  name: product.title,
-                  price: product.price,
-                  originalprice: product.originalPrice,
-                  images: product.media,
-                  colors: product.variants?.colors || [],
-                  href: `/products/${product.id}`,
-                  description: product.description
-                }}
-              />
-            </div>
-          ))}
+              <ChevronLeft className="w-5 h-5 text-gray-300" />
+            </button>
+
+            <button
+              onClick={scrollRight}
+              disabled={!canScrollRight}
+              className={`absolute right-2 top-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-full px-4 py-0.5 border border-gray-200 hover:bg-gray-50 transition-all duration-200 ${!canScrollRight ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl"
+                }`}
+            >
+              <ChevronRight className="w-5 h-5 text-gray-300" />
+            </button>
+          </div>
+
+          {/* Products Container */}
+          <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto gap-2 md:gap-3 pt-2 pb-4 scroll-smooth custom-scrollbar w-full"
+          >
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="flex-none w-[calc(50%-6px)] sm:w-[calc(50%-6px)] md:w-[calc(33.333%-8px)] lg:w-[calc(25%-9px)]"
+              >
+                <ProductCard
+                  product={{
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    originalprice: product.originalPrice,
+                    images: product.media,
+                    href: `/products/${product.id}`,
+                    description: product.description
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-    
-     <style jsx>{`
+      </section>
+
+      <style jsx>{`
      .custom-scrollbar::-webkit-scrollbar {
   width: 2px !important;
   height: 0.1rem !important;
